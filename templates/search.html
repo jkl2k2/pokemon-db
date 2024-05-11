@@ -1,0 +1,33 @@
+{% from 'bootstrap5/form.html' import render_form %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search</title>
+</head>
+
+<body>
+  {% include 'partials/nav.html' %}
+  <div class="container">
+    <h2 class="bg-primary-subtle border border-primary-subtle text-primary-emphasis text-left p-4">
+      Pokemon Wiki Search
+    </h2>
+    <br />
+    <div class="w-50 m-auto p-3 text-info-emphasis bg-info-subtle border border-info-subtle rounded-3">
+      Featured Pokemon:&nbsp;
+      <a href="{{ url_for('detail', query=158) }}"><mark>Totodile!</mark></a>
+    </div>
+    <br />
+    <div
+      class="w-50 m-auto p-3 flex text-center text-primary-emphasis bg-secondary-subtle border border-secondary-subtle rounded-3">
+      <div class="container">{{ render_form(form) }}</div>
+    </div>
+  </div>
+
+  {{ bootstrap.load_css() }} {{ bootstrap.load_js() }}
+</body>
+
+</html>
