@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info</title>
+</head>
+
+<body>
+  {% include 'partials/nav.html' %}
+
+  <main class="container">
+    <h1>PokeInfo</h1> <br>
+    <h2>Pokedex #{{data.id}}: {{data.name}}</h2>
+  </main>
+  <hr>
+
+  <div class="sprites">
+    <img src="{{data.sprites.front_default}}">
+    <img src="{{data.sprites.back_default}}">
+  </div>
+  <hr>
+
+  <div class="info">
+    <h4>Type(s): </h4>
+    <ul>
+        {% for type in data.types %}
+            <li>{{type}}</li>
+        {% endfor %}
+    </ul>
+    <br>
+
+    <h4>Cry Sample:</h4>
+    <audio controls>
+        <source src="{{data.cries.latest}}" type="audio/ogg">
+        This browser does not support audio.
+    </audio>
+    <br>
+
+    <h4>Physical Traits:</h4>
+    <ul>
+        <li>Height: {{data.height /10}} m</li>
+        <li>Weight: {{data.weight /10}} kg</li>
+    </ul>
+    <br>
+
+    <h4>Abilities:</h4>
+    <ul>
+        {% for ability in data.abilities %}
+            <li>{{ability.name}}</li>
+        {% endfor %}
+    </ul>
+    <br>
+
+    <h4>Moves:</h4>
+    <ul>
+        {% for move in data.moves %}
+            <li>{{move.name}}</li>
+        {% endfor %}
+    </ul>
+    <br>
+
+  </div>
+
+  {{ bootstrap.load_css() }} {{ bootstrap.load_js() }}
+</body>
+
+</html>
