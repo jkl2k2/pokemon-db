@@ -1,10 +1,11 @@
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, flash, redirect, render_template, url_for
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
 import secrets
+import random
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
@@ -35,9 +36,6 @@ def detail(query):
         return redirect(url_for('search'))
     return render_template('detail.html', data=raw.json())
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 def random_pokemon_team():
     team = []
     while len(team) < 6:
@@ -62,3 +60,6 @@ def random_team():
         return redirect(url_for('home'))
 
     return render_template('random_team.html', pokemon_data=pokemon_data)
+
+if __name__ == '__main__':
+    app.run(debug=True)
