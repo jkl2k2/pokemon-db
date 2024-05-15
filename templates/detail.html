@@ -11,63 +11,66 @@
   {% include 'partials/nav.html' %}
 
   <main class="container">
-    {% include 'partials/nav.html' %}
 
-  <main class="container">
-    <h1>PokeInfo</h1> <br>
-    <h2>Pokedex #{{data.id}}: {{data.name}}</h2> <br>
-    <a href="{{ url_for('search') }}">Back to Search</a>
-  </main>
-  <hr>
-
-  <div class="sprites">
-    <img src="{{data.sprites.front_default}}">
-    <img src="{{data.sprites.back_default}}">
-  </div>
-  <hr>
-
-  <div class="info">
-    <h4>Type(s): </h4>
-    <ul>
-        {% for type in data.types %}
-            <li>{{type}}</li>
-        {% endfor %}
-    </ul>
+    <br>
+    <h2 class="p-4 text-center bg-primary-subtle text-primary-emphasis border border-primary-subtle rounded-3">PokeInfo
+    </h2>
+    <h3 class="p-4 text-center bg-info-subtle text-info-emphasis border border-info-subtle rounded-3">
+      Pokedex
+      #{{data.id}}:
+      {{data.name}}
+    </h3>
+    <br>
+    <a href="{{ url_for('search') }}"><button class="btn btn-outline-danger btn-lg w-100">Back
+        to Search</button></a>
+    <br>
     <br>
 
-    <h4>Cry Sample:</h4>
-    <audio controls>
-        <source src="{{data.cries.latest}}" type="audio/ogg">
-        This browser does not support audio.
-    </audio>
-    <br>
+    <div class="p-4 container flex-column d-flex bg-light border border-dark-subtle rounded-3">
+      <div class="row">
+        <div class="col">
+          <img src="{{data.sprites.front_default}}" alt="(No front sprite)" style="height:200px">
+        </div>
+        <div class="col">
+          <img src="{{data.sprites.back_default}}" alt="(No back sprite)" style="height:200px">
+        </div>
+        <div class="col">
+          <b>Type(s):</b>
+          {% for type in data.types %}
+          <br><mark><b>{{ type['type']['name'] }}</b></mark>
+          {% endfor %}
+        </div>
+        <div class="col">
+          <b>Physical Traits:</b>
+          <br>
+          Height: {{data.height /10}} m
+          <br>
+          Weight: {{data.weight /10}} kg
+        </div>
+        <div class="col">
+          <b>Abilities:</b>
+          {% for ability in data.abilities %}
+          <br>{{ ability['ability']['name'] }}
+          {% endfor %}
+        </div>
+        <div class="col">
+          <b>Example Moves:</b>
+          {% for i in range(5) %}
+          <br>{{ data.moves[i]['move']['name'] }}
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="row w-25">
+        <b>Listen to this Pokemon:</b>
+        <audio controls>
+          <source src="{{data.cries.latest}}" type="audio/ogg">
+          This browser does not support audio.
+        </audio>
+      </div>
+    </div>
 
-    <h4>Physical Traits:</h4>
-    <ul>
-        <li>Height: {{data.height /10}} m</li>
-        <li>Weight: {{data.weight /10}} kg</li>
-    </ul>
-    <br>
-
-    <h4>Abilities:</h4>
-    <ul>
-        {% for ability in data.abilities %}
-            <li>{{ability.name}}</li>
-        {% endfor %}
-    </ul>
-    <br>
-
-    <h4>Moves:</h4>
-    <ul>
-        {% for move in data.moves %}
-            <li>{{move.name}}</li>
-        {% endfor %}
-    </ul>
-    <br>
-
-  </div>
-
-  {{ bootstrap.load_css() }} {{ bootstrap.load_js() }}
+    {{ bootstrap.load_css() }} {{ bootstrap.load_js() }}
 </body>
 
 </html>
