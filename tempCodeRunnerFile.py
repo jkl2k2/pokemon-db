@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, url_for
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -7,7 +7,7 @@ import requests
 import secrets
 
 app = Flask(__name__)
-bootstrap = Bootstrap5(app)
+bootstrap = Bootstrap(app)
 app.secret_key = secrets.token_urlsafe(16)
 csrf = CSRFProtect(app)
 
@@ -37,28 +37,3 @@ def detail(query):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-def random_pokemon_team():
-    team = []
-    while len(team) < 6:
-        poke_id = random.randint(1, 898)  # Assuming there are 898 Pokémon
-        if poke_id not in team:
-            team.append(poke_id)
-    return team
-
-@app.route('/random_team')
-def random_team():
-    try:
-        team = random_pokemon_team()
-        sprites = []
-        for poke_id in team:
-            raw = requests.get(f'https://pokeapi.co/api/v2/pokemon/{poke_id}/')
-            raw.raise_for_status()
-            data = raw.json()
-            sprites.append(data['sprites']['front_default'])
-        pokemon_data = [{'id': poke_id, 'sprite': sprite} for poke_id, sprite in zip(team, sprites)]
-    except requests.exceptions.RequestException as e:
-        flash(f'An error occurred: {e}', 'danger')
-        return redirect(url_for('home'))
-
-    return render_template('random_team.html', pokemon_data=pokemon_data)

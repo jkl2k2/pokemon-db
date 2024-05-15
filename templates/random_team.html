@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Team</title>
+  {{ bootstrap.load_css() }}
+</head>
+
+<body>
+  {% include 'partials/nav.html' %}
+
+  <main class="container">
+
+    <section id="randomTeamSection">
+      <h2>Random Pokémon Team</h2>
+      <div class="row">
+        {% for pokemon in pokemon_data %}
+        <div class="col-4 col-md-2 text-center">
+          <img src="{{ pokemon.sprite }}" alt="Pokémon Sprite" class="img-fluid">
+          <p>Pokémon ID: {{ pokemon.id }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <a href="{{ url_for('random_team') }}" class="btn btn-primary mt-3">Generate New Team</a>
+    </section>
+
+  </main>
+
+  {{ bootstrap.load_js() }}
+</body>
+
+</html>
