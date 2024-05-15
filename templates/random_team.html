@@ -14,16 +14,25 @@
   <main class="container">
 
     <section id="randomTeamSection">
-      <h2>Random Pokémon Team</h2>
+      <br>
+      <h2
+        class="p-4 text-center bg-primary-subtle border border-primary-subtle text-primary-emphasis text-left rounded-3">
+        Random
+        Pokémon Team</h2>
+      <br>
       <div class="row">
         {% for pokemon in pokemon_data %}
         <div class="col-4 col-md-2 text-center">
-          <img src="{{ pokemon.sprite }}" alt="Pokémon Sprite" class="img-fluid">
+          <a href="{{ url_for('detail', query=pokemon.id) }}">
+            <button class="btn btn-outline-info">
+              <img src="{{ pokemon.sprite }}" alt="Pokémon Sprite" class="img-fluid">
+            </button>
+          </a>
           <p>Pokémon ID: {{ pokemon.id }}</p>
         </div>
         {% endfor %}
       </div>
-      <a href="{{ url_for('random_team') }}" class="btn btn-primary mt-3">Generate New Team</a>
+      <a href="{{ url_for('random_team') }}" class="btn btn-primary mt-3 btn-lg w-100">Generate New Team</a>
     </section>
 
   </main>
