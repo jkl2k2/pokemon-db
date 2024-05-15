@@ -12,15 +12,17 @@
 <body>
   {% include 'partials/nav.html' %}
   <div class="container">
-    <h2 class="bg-primary-subtle border border-primary-subtle text-primary-emphasis text-left p-4">
+    <br>
+    <h2
+      class="p-4 text-center bg-primary-subtle border border-primary-subtle text-primary-emphasis text-left rounded-3">
       Pokemon Wiki Search
     </h2>
-    <br />
+    <br>
     <div class="w-50 m-auto p-3 text-info-emphasis bg-info-subtle border border-info-subtle rounded-3">
       Featured Pokemon:&nbsp;
       <a href="{{ url_for('detail', query=158) }}"><mark>Totodile!</mark></a>
     </div>
-    <br />
+    <br>
     <div
       class="w-50 m-auto p-3 flex text-center text-primary-emphasis bg-secondary-subtle border border-secondary-subtle rounded-3">
       <div class="container">{{ render_form(form) }}</div>
