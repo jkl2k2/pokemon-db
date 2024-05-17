@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <title>Poké WiKi</title>
+  <title>PokemonDB</title>
   <style>
     body {
       background-color: #e5e4bb;
     }
+
     .sidebar {
       height: 100vh;
       background-color: #d2d215;
@@ -21,68 +23,88 @@
       width: 250px;
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
     }
+
     .sidebar a {
       display: block;
       color: #000;
       padding: 10px 15px;
       text-decoration: none;
     }
+
     .sidebar a:hover {
       background-color: #555;
       color: white;
     }
+
     .main-content {
-      margin-left: 270px; /* Same as the width of the sidebar */
+      margin-left: 270px;
+      /* Same as the width of the sidebar */
       padding: 20px;
     }
+
     .img-shadow {
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
     }
+
     .btn-custom {
       margin: 0.5rem;
       padding: 0.75rem 1.5rem;
       font-size: 1.25rem;
     }
+
     .fancy-quote {
       font-family: 'Dancing Script', cursive;
       font-size: 1.5rem;
     }
+
     .header-box {
       background-color: #e40b0b;
       border: 2px solid #e81313;
-      padding: 10px 20px; /* Adjust padding as necessary */
+      padding: 10px 20px;
+      /* Adjust padding as necessary */
       border-radius: 10px;
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100px; /* Fixed height for the header */
-      overflow: hidden; /* Ensure content fits within the header */
+      height: 100px;
+      /* Fixed height for the header */
+      overflow: hidden;
+      /* Ensure content fits within the header */
     }
+
     .header-box h1 {
-      margin: 0 20px; /* Add some margin to the sides of the text */
-      font-size: 1.5rem; /* Adjust font size as necessary */
+      margin: 0 20px;
+      /* Add some margin to the sides of the text */
+      font-size: 1.5rem;
+      /* Adjust font size as necessary */
     }
+
     .quote-card .card-header {
       background-color: #e81313 !important;
       color: #f5bebe !important;
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
     }
+
     .quote-card .card-body {
       background-color: #f7cac7 !important;
       color: #333 !important;
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
     }
+
     .gif-container {
       text-align: center;
       margin-bottom: 1rem;
     }
+
     .ash-image {
       margin-top: 1rem;
       text-align: center;
     }
+
     .header-gif {
-      height: 80px; /* Adjust height as necessary */
+      height: 80px;
+      /* Adjust height as necessary */
       width: auto;
     }
   </style>
@@ -91,42 +113,50 @@
 <body>
   <div class="sidebar">
     <div class="gif-container">
-      <img src="https://media.giphy.com/media/n2ytlxNQLodGM/giphy.gif?cid=ecf05e4733afn0b67kqc77f1q6ab3y4zuwa29gyzm7offppk&ep=v1_gifs_search&rid=giphy.gif&ct=s" alt="Pikachu GIF" class="img-fluid">
+      <img
+        src="https://media.giphy.com/media/n2ytlxNQLodGM/giphy.gif?cid=ecf05e4733afn0b67kqc77f1q6ab3y4zuwa29gyzm7offppk&ep=v1_gifs_search&rid=giphy.gif&ct=s"
+        alt="Pikachu GIF" class="img-fluid">
     </div>
-    <a href="home.html">Home</a>
+    <a href="{{ url_for('home') }}">Home</a>
     <p></p>
-    <a href="search.html">Search Pokémon</a>
+    <a href="{{ url_for('search') }}">Search Pokémon</a>
     <p></p>
-    <a href="random_team.html">Generate Random Team</a>
+    <a href="{{ url_for('random_team') }}">Generate Random Team</a>
     <p></p>
-    <div class="ash-image">
-      <img src="/Users/joseph/Downloads/7il8k6ett9s6403e8nrqhk6jk7-0c9352fa129e3313fb78e537d714f251.png" alt="Ash Ketchum" class="img-fluid img-shadow">
-    </div>
+    <!-- <div class="ash-image">
+      <img src="/Users/joseph/Downloads/7il8k6ett9s6403e8nrqhk6jk7-0c9352fa129e3313fb78e537d714f251.png"
+        alt="Ash Ketchum" class="img-fluid img-shadow">
+    </div> -->
   </div>
 
   <div class="main-content">
     <div class="container text-center">
       <div class="jumbotron header-box">
-        <img src="https://media.giphy.com/media/iJsjsm6dhNPiQBvztq/giphy.gif?cid=790b7611vudi17m5u67re5vwfjrgexv1jjpxexch72mzthbt&ep=v1_gifs_search&rid=giphy.gif&ct=s" alt="Pokémon GIF" class="header-gif">
-        <h1 class="display-4">Welcome To The Poké WiKi!</h1>
-        <img src="https://media.giphy.com/media/iJsjsm6dhNPiQBvztq/giphy.gif?cid=790b7611vudi17m5u67re5vwfjrgexv1jjpxexch72mzthbt&ep=v1_gifs_search&rid=giphy.gif&ct=s" alt="Pokémon GIF" class="header-gif">
+        <img
+          src="https://media.giphy.com/media/iJsjsm6dhNPiQBvztq/giphy.gif?cid=790b7611vudi17m5u67re5vwfjrgexv1jjpxexch72mzthbt&ep=v1_gifs_search&rid=giphy.gif&ct=s"
+          alt="Pokémon GIF" class="header-gif">
+        <h1 class="display-4">Welcome To PokemonDB!</h1>
+        <img
+          src="https://media.giphy.com/media/iJsjsm6dhNPiQBvztq/giphy.gif?cid=790b7611vudi17m5u67re5vwfjrgexv1jjpxexch72mzthbt&ep=v1_gifs_search&rid=giphy.gif&ct=s"
+          alt="Pokémon GIF" class="header-gif">
       </div>
       <p></p>
       <p> </p>
-      <p class="lead">Your ultimate resource for all things Pokémon. Search for your favorite Pokémon, view detailed information, and create a random team to get started on your next adventure!</p>
+      <p class="lead">Your ultimate resource for all things Pokémon. Search for your favorite Pokémon, view detailed
+        information, and create a random team to get started on your next adventure!</p>
       <hr class="my-4">
 
       <!-- Images Section -->
       <div class="container-fluid text-center">
         <div class="row align-items-start">
           <div class="col">
-            <img src="/Users/joseph/Downloads/pikachu-johto-cap-removebg-preview.png" class="img-fluid img-shadow">
+            <img src="/static/img/pikachu.png" class="img-fluid img-shadow" style="height: 200px;">
           </div>
           <div class="col">
-            <img src="/Users/joseph/Downloads/pikachu-removebg-preview.png" class="img-fluid img-shadow">
+            <img src="/static/img/sprigatito.png" class="img-fluid img-shadow" style="height: 200px;">
           </div>
           <div class="col">
-            <img src="/Users/joseph/Downloads/pikachu-hoenn-cap-removebg-preview.png" class="img-fluid img-shadow">
+            <img src="/static/img/totodile.png" class="img-fluid img-shadow" style="height: 200px;">
           </div>
         </div>
       </div>
@@ -138,7 +168,8 @@
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0 fancy-quote">
-            <p>"The circumstances of one's birth are irrelevant. It's what one does with the gift of life that determines who you are."</p>
+            <p>"The circumstances of one's birth are irrelevant. It's what one does with the gift of life that
+              determines who you are."</p>
             <footer class="blockquote-footer">Mewtwo <cite title="Source Title">Pokémon</cite></footer>
           </blockquote>
         </div>
