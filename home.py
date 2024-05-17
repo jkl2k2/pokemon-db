@@ -4,6 +4,7 @@ Abstract: A Flask project that serves a resource webpage for Pokemon fans.
 Course: CST205 - SP24
 Authors: Joshua Lomelin, Caitlin Susbilla, Joseph Molina, Matthew Belles
 Date: 5/15/2024
+Github Link: https://github.com/jkl2k2/pokemon-db
 """
 
 from flask import Flask, flash, redirect, render_template, url_for
