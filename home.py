@@ -1,3 +1,11 @@
+"""
+Title: Final Project - PokemonDB
+Abstract: A Flask project that serves a resource webpage for Pokemon fans.
+Course: CST205 - SP24
+Authors: Joshua Lomelin, Caitlin Susbilla, Joseph Molina, Matthew Belles
+Date: 5/15/2024
+"""
+
 from flask import Flask, flash, redirect, render_template, url_for
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm, CSRFProtect
@@ -16,6 +24,7 @@ csrf = CSRFProtect(app)
 def home():
     return render_template('home.html')
 
+# Route written by Joshua
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     class PokeForm(FlaskForm):
@@ -29,6 +38,7 @@ def search():
     
     return render_template('search.html', form=searchForm)
 
+# Route written by Joshua
 @app.route('/detail/<query>')
 def detail(query):
     raw = requests.get(f'https://pokeapi.co/api/v2/pokemon/{query}/')
@@ -36,6 +46,7 @@ def detail(query):
         return redirect(url_for('search'))
     return render_template('detail.html', data=raw.json())
 
+# Function written by Caitlin
 def random_pokemon_team():
     team = []
     while len(team) < 6:
@@ -44,6 +55,7 @@ def random_pokemon_team():
             team.append(poke_id)
     return team
 
+# Route written by Caitlin
 @app.route('/random_team')
 def random_team():
     try:
